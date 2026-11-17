@@ -62,10 +62,10 @@ public sealed partial class IniConfig : IReadOnlyDictionary<string, IniConfig.Se
 
         string section = EMPTY;
 
-        foreach ( ReadOnlySpan<char> rawLine in span.SplitOn() )
+        foreach ( ReadOnlySpan<char> rawLine in span.EnumerateLines() )
         {
             ReadOnlySpan<char> line = rawLine.Trim();
-            if ( line.IsNullOrWhiteSpace() ) { continue; }
+            if ( line.IsWhiteSpace() ) { continue; }
 
             switch ( line[0] )
             {
@@ -80,7 +80,7 @@ public sealed partial class IniConfig : IReadOnlyDictionary<string, IniConfig.Se
                     ReadOnlySpan<char> sectionSpan = line[1..^1];
                     sectionSpan = sectionSpan.Trim(); // remove the brackets and whitespace
 
-                    if ( sectionSpan.IsNullOrWhiteSpace() ) { throw new FormatException("section title cannot be empty or whitespace."); }
+                    if ( sectionSpan.IsWhiteSpace() ) { throw new FormatException("section title cannot be empty or whitespace."); }
 
                     section = sectionSpan.ToString();
                     config.Add(new Section(section));
@@ -88,7 +88,7 @@ public sealed partial class IniConfig : IReadOnlyDictionary<string, IniConfig.Se
             }
 
             line = line.Trim();
-            if ( line.IsNullOrWhiteSpace() ) { continue; }
+            if ( line.IsWhiteSpace() ) { continue; }
 
 
             int separator = line.IndexOf('='); // key = value OR "value"

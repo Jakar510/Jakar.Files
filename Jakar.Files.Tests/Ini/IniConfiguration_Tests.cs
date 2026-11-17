@@ -51,10 +51,10 @@ public class IniConfig_Tests : Assert
     [Test] public void Test()
     {
         string actual = __ini.ToString();
-        $"-- {nameof(actual)} --\n{actual}".WriteToConsole();
+        Console.WriteLine($"-- {nameof(actual)} --\n{actual}");
         IniConfig results = IniConfig.Parse(actual);
 
-        $"-- {nameof(results)} --\n{results.ToString()}".WriteToConsole();
+        Console.WriteLine($"-- {nameof(results)} --\n{results.ToString()}");
 
         this.NotNull(results);
         this.AreEqual(results, __ini);

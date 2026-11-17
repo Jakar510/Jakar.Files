@@ -92,6 +92,6 @@ public class EmbeddedResources<TValue>
     {
         using TelemetrySpan telemetrySpan = TelemetrySpan.Create();
         string              text          = await GetResourceTextAsync(fileName, encoding).ConfigureAwait(false);
-        return text.FromJson<T>();
+        return JsonCodec.FromJson<T>(text, FilesJson.ReaderOptions);
     }
 }

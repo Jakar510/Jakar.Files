@@ -751,7 +751,7 @@ public partial class LocalFile( FileInfo info, Encoding? encoding = null ) : Bas
 
         string content = await stream.ReadToEndAsync(token).ConfigureAwait(false);
 
-        return content.FromJson<TValue>();
+        return JsonCodec.FromJson<TValue>(content, FilesJson.ReaderOptions);
     }
 
     async ValueTask<byte[]> IAsyncReadHandler.AsBytes( CancellationToken token = default )
@@ -810,7 +810,7 @@ public partial class LocalFile( FileInfo info, Encoding? encoding = null ) : Bas
         using TelemetrySpan telemetrySpan = TelemetrySpan.Create();
         using StreamReader  stream        = new(OpenRead(), FileEncoding);
         string              content       = stream.ReadToEnd();
-        return content.FromJson<TValue>();
+        return JsonCodec.FromJson<TValue>(content, FilesJson.ReaderOptions);
     }
 
     string IReadHandler.AsString( in TelemetrySpan parent = default )

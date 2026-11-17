@@ -6,7 +6,7 @@ Files, directories, file watchers, embedded resources, INI configuration and pre
 dotnet add package Jakar.Files
 ```
 
-Split out of [Jakar.Extensions](https://github.com/Jakar510/Jakar.Extensions) in 10.12.0. It depends on [Jakar.Extensions](https://www.nuget.org/packages/Jakar.Extensions/). The types keep the `Jakar.Extensions` namespace, so code that used them from Jakar.Extensions only needs this package reference (and a recompile).
+Split out of [Jakar.Extensions](https://github.com/Jakar510/Jakar.Extensions) in 10.12.0. Since 10.2.0 it depends on Jakar.Core, Jakar.Logging and Jakar.Collections (not Jakar.Extensions; Jakar.Extensions 10.13 depends on it and type-forwards the types that moved).nuget.org/packages/Jakar.Extensions/). The types keep the `Jakar.Extensions` namespace, so code that used them from Jakar.Extensions only needs this package reference (and a recompile).
 
 ## What's in it
 

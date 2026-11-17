@@ -107,7 +107,7 @@ public partial class IniConfig
         {
             string? s = this[key];
             value = null;
-            return !string.IsNullOrEmpty(s) && Json.TryDeserialize<string[], JsonArrayConverter<string, JsonStringConverter>>(s, out value);
+            return !string.IsNullOrEmpty(s) && FilesJson.TryDeserialize<string[], JsonArrayConverter<string, JsonStringConverter>>(s, out value);
         }
         public bool ValueAs( string key, [NotNullWhen(true)] out string[]? value, char separator )
         {
@@ -156,10 +156,10 @@ public partial class IniConfig
         public void Add<TNumber>( string key, TNumber value )
             where TNumber : INumber<TNumber> => this[key] = value.ToString(null, CultureInfo.CurrentCulture);
         public void AddJson<TValue>( string key, TValue value )
-            where TValue : IJsonSerializable<TValue> => this[key] = Json.Serialize(in value, false);
+            where TValue : IJsonSerializable<TValue> => this[key] = JsonCodec.ToJson(in value, false);
         public void Add<TValue>( string key, params ReadOnlySpan<TValue> values )
-            where TValue : IJsonSerializable<TValue> => this[key] = Json.Serialize(values, false);
-        public void Add( string key, params ReadOnlySpan<string> values ) => this[key] = Json.Serialize(values);
+            where TValue : IJsonSerializable<TValue> => this[key] = JsonCodec.ToJsonArray(values, JsonWriterOptions.Default);
+        public void Add( string key, params ReadOnlySpan<string> values ) => this[key] = FilesJson.Serialize(values);
         public void Add( string key, IEnumerable<string> values, char   separator ) => this[key] = string.Join(separator, values);
         public void Add( string key, IEnumerable<string> values, string separator ) => this[key] = string.Join(separator, values);
         public void Add( string key, TimeSpan            value ) => this[key] = value.ToString();

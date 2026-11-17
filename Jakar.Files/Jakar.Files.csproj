@@ -7,13 +7,13 @@
 		<!-- Types stay in the Jakar.Extensions namespace, as every package split out of Jakar.Extensions does (MigrationPlan.md). -->
 		<RootNamespace>Jakar.Extensions</RootNamespace>
 		<AssemblyName>Jakar.Files</AssemblyName>
-		<Version>10.1.0</Version>
+		<Version>10.2.0</Version>
 		<Title>Jakar.Files</Title>
 		<PackageId>Jakar.Files</PackageId>
 		<Authors>Tyler Stegmaier</Authors>
 		<Description>Files, directories, file watchers, embedded resources, INI configuration and preference files for Jakar.Extensions.</Description>
 		<PackageTags>Files Directories FileWatcher Ini Preferences EmbeddedResources</PackageTags>
-		<PackageReleaseNotes>10.1.0: initial release. Split out of Jakar.Extensions 10.12.0; the types keep the Jakar.Extensions namespace.</PackageReleaseNotes>
+		<PackageReleaseNotes>10.2.0: BREAKING: no longer depends on Jakar.Extensions (Jakar.Core, Jakar.Logging, Jakar.Collections instead). Gains MimeType/MimeTypes/MimeTypeNames and EncodingConverter. DataProtectorFiles, AppSettings and LanguageApi moved to Jakar.Extensions 10.13.0. 10.1.0: initial release. Split out of Jakar.Extensions 10.12.0; the types keep the Jakar.Extensions namespace.</PackageReleaseNotes>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -32,7 +32,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Jakar.Extensions" />
+		<PackageReference Include="Jakar.Collections" />
+		<PackageReference Include="Jakar.Core" />
+		<PackageReference Include="Jakar.Logging" />
+		<PackageReference Include="CommunityToolkit.Diagnostics" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" />
+		<PackageReference Include="OneOf" />
+		<PackageReference Include="ZLinq" />
 		<PackageReference Include="JetBrains.Annotations" />
 		<PackageReference Include="ZLinq.FileSystem" />
 	</ItemGroup>

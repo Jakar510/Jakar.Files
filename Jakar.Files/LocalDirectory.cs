@@ -55,7 +55,7 @@ public partial class LocalDirectory : BaseClass<LocalDirectory>, IDirectoryConte
         base.Dispose(disposing);
         if ( !disposing ) { return; }
 
-        DisposeAsync().CallSynchronously();
+        DisposeAsync().AsTask().GetAwaiter().GetResult();
     }
 
     public virtual async ValueTask DisposeAsync()

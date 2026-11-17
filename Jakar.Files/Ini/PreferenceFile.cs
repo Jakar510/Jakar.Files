@@ -113,7 +113,7 @@ public abstract class PreferenceFile<TSelf> : BaseClass<TSelf>, IAsyncDisposable
         lock ( __lock )
         {
             CopyFrom(loaded);
-            _additionalData = Json.Merge(null, loaded.AdditionalData);
+            _additionalData = FilesHelpers.Merge(null, loaded.AdditionalData);
         }
     }
 

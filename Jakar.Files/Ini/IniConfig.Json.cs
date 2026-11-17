@@ -1,4 +1,4 @@
-// Jakar.Extensions :: Jakar.Extensions
+﻿// Jakar.Extensions :: Jakar.Extensions
 // 10/02/2026
 
 namespace Jakar.Extensions;
@@ -62,6 +62,6 @@ public sealed partial class IniConfig
                                                     {
                                                         null                                         => null,
                                                         JValueNode { Kind: JNodeKind.String } value => value.GetString(),
-                                                        _                                            => node.ToJson(false)
+                                                        _                                            => node.ToJson(JsonWriterOptions.Default)
                                                     };
 }

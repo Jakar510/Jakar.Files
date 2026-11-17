@@ -48,7 +48,7 @@ public sealed class FilesJson_Tests
             {
                 Assert.That(prefs.General.Theme,                Is.EqualTo("Light"));
                 Assert.That(prefs.Server.Port,                  Is.EqualTo(8080));
-                Assert.That(prefs.Contains("FromNewerVersion"), Is.True, "unknown keys are kept");
+                Assert.That(prefs.AdditionalData?.ContainsKey("FromNewerVersion") is true, Is.True, "unknown keys are kept");
                 prefs.General.Theme = "Blue";
             }
 
